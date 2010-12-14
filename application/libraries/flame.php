@@ -1,6 +1,6 @@
 <?php
-require_once APPPATH.'/libraries/icomponent.php';
-abstract class Component extends Model implements IComponent {
+require_once APPPATH.'/libraries/iFlame.php';
+abstract class Flame extends Model implements IFlame {
     protected $tablename;
     protected $object_name;
     protected $pk; // primary key

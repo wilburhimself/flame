@@ -14,9 +14,9 @@ Usage
 -----
 When creating a model include the library file and extend your model from the Component Class:
 
-        require_once APPPath.'/libraries/component.php';
+        require_once APPPath.'/libraries/flame.php';
 
-	class Person extends Component {
+	class Person extends Flame {
             ... 
         }
 
