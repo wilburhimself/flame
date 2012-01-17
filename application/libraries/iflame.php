@@ -1,5 +1,5 @@
 <?php
-interface Icomponent {
+interface IFlame {
     public function get($id);
     public function get_list($num=null, $offset=null);
     public function update($id, $data);

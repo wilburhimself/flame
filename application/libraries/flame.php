@@ -1,6 +1,6 @@
 <?php
-require_once APPPATH.'/libraries/iFlame.php';
-abstract class Flame extends Model implements IFlame {
+require_once APPPATH.'libraries/iFlame.php';
+abstract class Flame extends CI_Model implements IFlame {
     protected $tablename;
     protected $object_name;
     protected $pk; // primary key
@@ -11,6 +11,7 @@ abstract class Flame extends Model implements IFlame {
 
     public function __construct() {
         $ci =& get_instance();
+        $ci->load->helper('inflector');
         $this->ci = $ci;
         $this->db = $this->ci->db;
         $this->fields = $this->db->list_fields($this->tablename);
