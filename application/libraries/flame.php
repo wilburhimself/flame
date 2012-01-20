@@ -1,10 +1,10 @@
 <?php
 require_once APPPATH.'libraries/iFlame.php';
 abstract class Flame extends CI_Model implements IFlame {
-    protected $tablename;
-    protected $object_name;
-    protected $pk; // primary key
-    private $fields;
+    public $tablename;
+    public $object_name;
+    public $pk; // primary key
+    public $fields;
     public $belongs_to = array();
     public $has_many = array();
     public $has_and_belongs_to_many = array();
@@ -53,6 +53,7 @@ abstract class Flame extends CI_Model implements IFlame {
                 return false;
             default:
                 $p = $query->result();
+                
                 $o = array();
                 foreach ($p as $e) {
                     $o[] = $this->get($e->{singular($this->tablename).'_id'});
@@ -73,6 +74,7 @@ abstract class Flame extends CI_Model implements IFlame {
             
         }
         $obj = (object) $this->db->get($this->tablename)->row_array();
+        
 
         if (!empty($this->has_many)) {
             foreach ($this->has_many as $entity) {
@@ -90,8 +92,7 @@ abstract class Flame extends CI_Model implements IFlame {
                 //print $this->db->last_query();
             }
         }
-
-        return $obj;
+        return new FlameResult($this, $obj);
     }
 
     public function add($object) {
@@ -104,6 +105,17 @@ abstract class Flame extends CI_Model implements IFlame {
 
     public function delete($id) {
         return $this->db->where($this->pk, $id)->delete($this->tablename);
+    }
+    
+    public function populate() {
+        $out = new stdClass();
+        $params = $this->input->post($this->unicode);
+        foreach ($this->fields as $field) {
+            if ($field == $this->pk) continue;
+            $value = $params[$field];
+            $out->$field = !empty($value) ? $value : '';
+        }
+        return $out;
     }
 
     public function generate_from_post() {
@@ -169,5 +181,21 @@ abstract class Flame extends CI_Model implements IFlame {
         }
         return $o;
     }
+}
 
+class FlameResult {
+    public function __construct($model, $obj) {
+        $this->model = $model;
+        foreach ($obj as $k => $v) {
+            $this->$k = $v;
+        }
+    }
+    
+    public function __call($method, $args)
+    {
+        if (isset($this->$method)) {
+            $func = $this->$method;
+            $func();
+        }
+    }
 }
