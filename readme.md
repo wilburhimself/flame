@@ -22,12 +22,12 @@ class Person extends Flame {
 ```
 
 There are some requirements before actually using this models, in the constructor function you have to:
-	
+
 	+ Set table name. Should be a plural name, ex. **Person = People**.
 	+ Set the name of the primary key field: $this->pk = 'id';
 	+ Call the parent's constructor function.
 
-	... 
+	...
 	public function __construct() {
 		$this->tablename = 'people';
 		$this->pk = 'id';
@@ -41,9 +41,9 @@ After this setup is done you are ready to use the model, for example:
 	or
 
 	$person = $this->Person->get($id);
-	
 
-This is clearly a VERY simple example and more can much more can be done with it. For up-to-date 
+
+This is clearly a VERY simple example and more can much more can be done with it. For up-to-date
 documentation keep an eye on the following link:
 
 http://retrorock.info/flame/
