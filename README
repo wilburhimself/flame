@@ -14,11 +14,12 @@ Usage
 -----
 When creating a model include the library file and extend your model from the Component Class:
 
-        require_once APPPath.'/libraries/flame.php';
-
-	class Person extends Flame {
-            ... 
-        }
+```
+require_once APPPath.'/libraries/flame.php';
+class Person extends Flame {
+		...
+}
+```
 
 There are some requirements before actually using this models, in the constructor function you have to:
 	
