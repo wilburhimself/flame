@@ -17,7 +17,7 @@ When creating a model include the library file and extend your model from the Fl
 ```
 require_once APPPath.'/libraries/flame.php';
 class Person extends Flame {
-		...
+	...
 }
 ```
 
@@ -29,19 +29,19 @@ There are some requirements before actually using this models, in the constructo
 
 ```
 public function __construct() {
-		$this->tablename = 'people';
-			$this->pk = 'id';
-			parent::__construct();
-		}
+	$this->tablename = 'people';
+		$this->pk = 'id';
+		parent::__construct();
+	}
 }
 ```
 
 After this setup is done you are ready to use the model, for example:
 
 ```
-	$people = $this->Person->get_list();
-	or
-	$person = $this->Person->get($id);
+$people = $this->Person->get_list();
+or
+$person = $this->Person->get($id);
 ```
 
 This is clearly a VERY simple example and more can much more can be done with it. For up-to-date
