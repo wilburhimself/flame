@@ -11,7 +11,7 @@ abstract class Flame extends CI_Model implements IFlame {
 
     public function __construct() {
         $ci =& get_instance();
-        $ci->load->helper('inflector');
+        $ci->load->helper('inflector'); // loads codeigniter inflector helper
         $this->ci = $ci;
         $this->db = $this->ci->db;
         $this->fields = $this->db->list_fields($this->tablename);
