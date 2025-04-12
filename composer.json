@@ -1,0 +1,21 @@
+{
+    "name": "wilburhimself/flame",
+    "description": "Active Record pattern implementation for CodeIgniter 4 models",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wilbur",
+            "email": "email@example.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.3.0",
+        "codeigniter4/framework": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "WilburHimself\\Flame\\": "src/"
+        }
+    }
+}
