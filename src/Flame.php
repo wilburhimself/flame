@@ -265,11 +265,11 @@ abstract class Flame extends Model implements IFlame
     /**
      * Update a record
      *
-     * @param mixed $id The primary key value
-     * @param object|array $data The data to update
+     * @param mixed $id The primary key value (null for no id in where clause)
+     * @param array|object|null $data The data to update
      * @return bool Success/failure
      */
-    public function update($id, $data)
+    public function update($id = null, $data = null): bool
     {
         return parent::update($id, $data);
     }
@@ -278,15 +278,16 @@ abstract class Flame extends Model implements IFlame
      * Delete a record
      *
      * @param mixed $id The primary key value
+     * @param bool $purge Whether to permanently delete a soft-deleted record
      * @return bool Success/failure
      */
-    public function delete($id = null)
+    public function delete($id = null, bool $purge = false)
     {
         if ($id === null) {
             return false;
         }
         
-        return parent::delete($id);
+        return parent::delete($id, $purge);
     }
 
     /**
